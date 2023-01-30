@@ -1,0 +1,22 @@
+{% extends "main.html" %}
+{% block content %}
+
+
+	<h1 style="color: red">Home Template</h1>
+
+
+
+	<h3><a href="about.html">About page</a></h3>
+	<div>
+		<div>
+			{% for room in rooms %}
+				<div>
+					<h4 style="color: blue">{{ room.id }} - <a href="/about/{{ room.id }}">{{ room.name }}</a></h4>
+				</div>
+			{% endfor %}
+		</div>
+	</div>
+
+
+{% endblock content %}
+
