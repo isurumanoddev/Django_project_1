@@ -6,12 +6,15 @@
 
 
 
-	<h3><a href="about.html">About page</a></h3>
 	<div>
 		<div>
 			{% for room in rooms %}
 				<div>
-					<h4 style="color: blue">{{ room.id }} - <a href="/about/{{ room.id }}">{{ room.name }}</a></h4>
+					<span style="font-size: 25px">@{{ room.host.username }}</span>
+					<small>{{ room.topic }}</small>
+					<p style="color: chocolate">{{ room.name }}</p>
+					<P>{{ room.description }}</P>
+					<h4 style="color: blue">{{ room.id }} - <a href="/room/{{ room.id }}">{{ room.name }}</a></h4>
 				</div>
 			{% endfor %}
 		</div>
