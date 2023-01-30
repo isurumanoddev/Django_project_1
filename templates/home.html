@@ -1,14 +1,16 @@
 {% extends "main.html" %}
 {% block content %}
 
-	<h1 style="color: red">Home Template</h1>
+	<h1 style="color: #6d07ad">Home Template</h1>
 
 
 	<div>
-		<a href="{% url "create-room" %}">Create Room</a>
+		<a style="color: #0e4d99" href="{% url "create-room" %}">Create Room</a>
 		<div>
 			{% for room in rooms %}
 				<div>
+					<a style="color: #0bc454" href="{% url "update-room" room.id %}">Update Room</a>
+					<a style="color: #cc352f" href="{% url "delete-room" room.id %}">Delete Room</a>
 					<span style="font-size: 25px">@{{ room.host.username }}</span>
 					<small>{{ room.topic }}</small>
 					<p style="color: chocolate">{{ room.name }}</p>
