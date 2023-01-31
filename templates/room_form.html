@@ -18,7 +18,7 @@
 		<div class="row m-2">
 			<form method="POST" action="">
 				{% csrf_token %}
-				{{ form|crispy }}
+				{{ form | crispy }}
 				<button type="submit" class="btn btn-success m-4 ">Submit</button>
 			</form>
 		</div>
