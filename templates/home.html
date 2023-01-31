@@ -1,26 +1,104 @@
-{% extends "main.html" %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+	      integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+	<style>
+        body {
+            background-color: chocolate;
+        }
+	</style>
+</head>
+<body>
+
+
+{% extends 'main.html' %}
 {% block content %}
 
-	<h1 style="color: #6d07ad">Home Template</h1>
 
 
-	<div>
-		<a style="color: #0e4d99" href="{% url "create-room" %}">Create Room</a>
-		<div>
-			{% for room in rooms %}
-				<div>
-					<a style="color: #0bc454" href="{% url "update-room" room.id %}">Update Room</a>
-					<a style="color: #cc352f" href="{% url "delete-room" room.id %}">Delete Room</a>
-					<span style="font-size: 25px">@{{ room.host.username }}</span>
-					<small>{{ room.topic }}</small>
-					<p style="color: chocolate">{{ room.name }}</p>
-					<P>{{ room.description }}</P>
-					<h4 style="color: blue">{{ room.id }} - <a href="/room/{{ room.id }}">{{ room.name }}</a></h4>
-				</div>
+	<div class="container">
+		<div class="row">
+			{% for topic in topics  %}
+				adsadsad
+				<a>{{ topic.name }}</a>
+
 			{% endfor %}
 		</div>
+
+		<div class="row bg-success">
+			<div class="col-md-3 ">
+				<h3>Browse Topics</h3>
+				{% for m in rooms %}
+					<a>{{ m.name }}</a>
+
+				{% endfor %}
+
+
+			</div>
+			<div class="col-md-9 bg-danger">
+				<div class="col">
+					<h1>Home Template</h1>
+					<a href="{% url "create-room" %}" class="btn btn-primary mb-2">Create Room</a>
+					<div class="row ">
+
+						{% for room in rooms %}
+							<div class="col-12 col-lg-6">
+
+								<div class="card text-white bg-dark mb-3 " style="height: 350px;">
+
+									<div class="card-body">
+
+
+										<a href="{% url "room" room.id %}" class="text-dark ">
+											<div class="card-header">
+												<ul class="nav nav-pills card-header-pills">
+													<li class="nav-item">
+														<h5 class="card-subtitle text-white m-2" style="width: 400px;">
+															@{{ room.host.username }}</h5>
+													</li>
+													<li class="nav-item">
+														<a href="{% url "update-room" room.id %}"
+														   class="btn btn-success m-1">Update</a>
+
+													</li>
+													<li class="nav-item">
+														<a href="{% url "delete-room" room.id %}"
+														   class="btn btn-danger m-1 ">Delete</a>
+													</li>
+
+												</ul>
+											</div>
+											<h2 class="card-title">{{ room.name }}</h2>
+										</a>
+										<p class="card-text  ">{{ room.description }}</p>
+
+
+									</div>
+								</div>
+							</div>
+						{% endfor %}
+					</div>
+				</div>
+			</div>
+		</div>
+
+
 	</div>
 
 
-{% endblock content %}
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+	        integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+	        crossorigin="anonymous"></script>
+{% endblock %}
+</body>
+</html>
 
+{#					<ol class="list-group list-group-numbered text-align-left">#}
+{#						<li class="list-group-item d-flex justify-content-between align-items-start">#}
+{#							<div class="fw-bold">{{ topic.name }}</div>#}
+{#							<span class="badge bg-primary rounded-pill">14</span>#}
+{#						</li>#}
+{#					</ol>#}
