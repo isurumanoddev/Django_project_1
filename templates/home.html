@@ -25,12 +25,15 @@
 
 		<div class="row ">
 			<div class="col-md-3 ">
-			<h3 class="display-5 text-center">Hot Topics</h3>
+				<h3 class="display-5 text-center">Hot Topics</h3>
+				<div class="list-group m-3 bg-warning ">
+					<a href="{% url "home" %}" class="list-group-item list-group-item-action">All</a>
+				</div>
 
 				{% for topic in topics %}
 					<div class="list-group m-3 bg-warning ">
-						<a href="#" class="list-group-item list-group-item-action">{{ topic.name }}</a>
-				</div>
+						<a href="{% url "home" %}" class="list-group-item list-group-item-action">{{ topic.name }}</a>
+					</div>
 
 				{% endfor %}
 
