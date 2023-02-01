@@ -13,7 +13,7 @@
 {% extends 'main.html' %}
 {% block content %}
 
-
+<h3 class="text-white">rooms {{ room_count  }}  available  </h3>
 
 	<div class="container">
 		<div class="row">
@@ -26,13 +26,14 @@
 		<div class="row ">
 			<div class="col-md-3 ">
 				<h3 class="display-5 text-center">Hot Topics</h3>
-				<div class="list-group m-3 bg-warning ">
-					<a href="{% url "home" %}" class="list-group-item list-group-item-action">All</a>
+				<div class="list-group m-3 ">
+					<a href="{% url "home" %}" class="list-group-item list-group-item-action bg-dark-subtle">All</a>
 				</div>
 
 				{% for topic in topics %}
 					<div class="list-group m-3 bg-warning ">
-						<a href="{% url "home" %}" class="list-group-item list-group-item-action">{{ topic.name }}</a>
+						<a href="{% url "home" %}?q={{ topic.name }}"
+						   class="list-group-item list-group-item-action bg-dark-subtle">{{ topic.name }}</a>
 					</div>
 
 				{% endfor %}
@@ -41,8 +42,8 @@
 			</div>
 			<div class="col-md-9 ">
 				<div class="col">
-
 					<a href="{% url "create-room" %}" class="btn btn-warning m-3 ">Create Room</a>
+
 					<div class="row ">
 
 						{% for room in rooms %}
