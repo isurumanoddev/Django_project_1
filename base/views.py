@@ -1,20 +1,45 @@
 from django.shortcuts import render, redirect
 from .models import Room, Topic, Message
 from .forms import RoomForm
+from django.contrib.auth.models import User
+from django.contrib.auth import authenticate, login, logout
 
 
-# Create your views here.
+def login_page(request):
+    if request.method == "POST":
+        username = request.POST.get("username")
+        password = request.POST.get("password")
+
+        try:
+            user = User.objects.get(username=username)
+            print(username, password,user)
+        except:
+            print("user not exist")
+
+        user = authenticate(request, username=username, password=password)
+
+        if user is not None:
+            login(request,user)
+            return redirect("home")
+        else:
+            print("User not registered")
+
+    context = {}
+    return render(request, "login_register.html", context)
+
+
+
 def home(request):
     if request.GET.get("q") is not None:
         q = request.GET.get("q")
     else:
         q = ""
 
-    rooms = Room.objects.filter(topic__name__icontains=q, )
+    rooms = Room.objects.filter(topic__name__icontains=q)
     room_count = rooms.count()
-    print(room_count)
+
     topics = Topic.objects.all()
-    context = {'rooms': rooms, "topics": topics, "room_count ": rooms.count()}
+    context = {'rooms': rooms, "topics": topics, "room_count": room_count}
     return render(request, "home.html", context)
 
 

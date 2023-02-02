@@ -13,7 +13,7 @@
 {% extends 'main.html' %}
 {% block content %}
 
-<h3 class="text-white">rooms {{ room_count  }}  available  </h3>
+
 
 	<div class="container">
 		<div class="row">
@@ -41,9 +41,10 @@
 
 			</div>
 			<div class="col-md-9 ">
+
 				<div class="col">
 					<a href="{% url "create-room" %}" class="btn btn-warning m-3 ">Create Room</a>
-
+					<h3 class="text-white"> {{ room_count  }} rooms   available  </h3>
 					<div class="row ">
 
 						{% for room in rooms %}

@@ -18,15 +18,23 @@
 			<a class="nav-item nav-link active" href="{% url "home" %}">Home</a>
 			<a class="nav-item nav-link" href="#">Features</a>
 			<a class="nav-item nav-link" href="#">Pricing</a>
-			<a class="nav-item nav-link" href="#">Disabled</a>
+			{#			<a class="nav-item nav-link" href="{% url "login-page" %}">Login</a>#}
 		</div>
 	</div>
-	<div class="container-fluid align-center">
+	<div class="container-fluid ">
 		<form class="d-flex align-center" method="GET" action="{% url "home" %}">
-			<input class="form-control me-2" type="search" placeholder="Search"  name="q">
+			<input class="form-control me-2" type="search" placeholder="Search" name="q">
 			<button class="btn btn-outline-success" type="submit">Search</button>
 		</form>
 	</div>
+	<div>
+		<div class="navbar-nav">
+
+				<a class="nav-item nav-link" href="{% url "login-page" %}">Login</a>
+
+		</div>
+	</div>
+
 </nav>
 
 
