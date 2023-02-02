@@ -12,14 +12,14 @@ def login_page(request):
 
         try:
             user = User.objects.get(username=username)
-            print(username, password,user)
+            print(username, password, user)
         except:
             print("user not exist")
 
         user = authenticate(request, username=username, password=password)
 
         if user is not None:
-            login(request,user)
+            login(request, user)
             return redirect("home")
         else:
             print("User not registered")
@@ -27,6 +27,10 @@ def login_page(request):
     context = {}
     return render(request, "login_register.html", context)
 
+
+def logout_user(request):
+    logout(request)
+    return redirect("home")
 
 
 def home(request):
