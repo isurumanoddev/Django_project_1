@@ -5,14 +5,18 @@ from .models import Room, Topic, Message
 from .forms import RoomForm
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.forms import UserCreationForm
 
 
 def login_page(request):
+    page = "login_page"
+    if request.user.is_authenticated:
+        return redirect("home")
+
     if request.method == "POST":
         username = request.POST.get("username")
         password = request.POST.get("password")
 
-        # print(username,password)
         try:
             User.objects.get(username=username)
 
@@ -27,12 +31,25 @@ def login_page(request):
         else:
             print("User not registered")
 
-    return render(request, "login_register.html")
+    context = {"page": page}
+    return render(request, "login_register.html", context)
 
 
 def logout_user(request):
     logout(request)
     return redirect("home")
+
+
+def register_user(request):
+    form = UserCreationForm()
+    if request.method == "POST":
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect("home")
+
+    context = {"form": form}
+    return render(request, "login_register.html", context)
 
 
 def home(request):
@@ -80,7 +97,6 @@ def update_room(request, pk):
         if form.is_valid():
             form.save()
             return redirect("home")
-
 
     context = {"form": form}
     return render(request, "room_form.html", context)

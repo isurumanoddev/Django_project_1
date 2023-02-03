@@ -26,10 +26,17 @@
 			<input class="form-control me-2" type="search" placeholder="Search" name="q">
 			<button class="btn btn-outline-success" type="submit">Search</button>
 		</form>
+		<div>
+
+		</div>
 	</div>
+
 	<div>
 		<div class="navbar-nav">
 			{% if request.user.is_authenticated %}
+				<label class="col-form-label">{{ request.form.username }}</label>
+
+
 				<a class="nav-item nav-link" href="{% url "logout" %}">Logout</a>
 			{% else %}
 				<a class="nav-item nav-link" href="{% url "login" %}">Login</a>
