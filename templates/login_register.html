@@ -8,21 +8,12 @@
 
 </head>
 <body>
-{#<style>#}
-{#    body {#}
-{#        background-color: #1c2d2d;#}
-{#        color: #f8f8f8;#}
-{#        font-family: sans-serif;#}
-{##}
-{##}
-{#    }#}
-{#</style>#}
 {% extends "main.html" %}
 {% load crispy_forms_tags %}
 {% block content %}
 
-
 	{% if page == "login_page" %}
+
 		<div class="container ">
 			<form class="col-lg-12 col-md-12 m-3" method="POST" action="">
 				{% csrf_token %}
@@ -52,15 +43,13 @@
 			<form class="col-lg-12 col-md-12 m-3" method="POST" action="">
 				{% csrf_token %}
 				{{ form|crispy }}
-
-
 				<button type="submit" class="btn btn-primary m-md-4 ">Register</button>
 				<div class="form-group row  m-3">
-					<a href="{% url "login" %}" class="col-form-label text-warning">Already Sign up . Click here..</a>
+					<a href="" class="col-form-label text-warning">Already Sign up yet. Click here..</a>
 				</div>
+
 			</form>
 		</div>
-
 	{% endif %}
 
 {% endblock %}

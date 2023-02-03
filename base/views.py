@@ -40,13 +40,14 @@ def logout_user(request):
     return redirect("home")
 
 
-def register_user(request):
+def user_register(request):
     form = UserCreationForm()
     if request.method == "POST":
         form = UserCreationForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect("home")
+            print("user registered")
+            return redirect("login")
 
     context = {"form": form}
     return render(request, "login_register.html", context)
