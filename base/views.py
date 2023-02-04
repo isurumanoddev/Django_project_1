@@ -69,7 +69,14 @@ def home(request):
 
 def room(request, pk):
     room = Room.objects.get(id=pk)
-    context = {"room": room}
+    room_messages = room.message_set.all()
+    print(room_messages)
+    if request.method == "POST":
+        comment = request.POST.get("comment")
+        print(comment)
+
+
+    context = {"room": room, "room_messages": room_messages}
 
     return render(request, "room.html", context)
 
