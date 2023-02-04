@@ -11,23 +11,21 @@
 
 
 {% extends 'main.html' %}
-{% load crispy_forms_tags %}
 {% block content %}
+	<div class="container">
+		<form method="POST" action="">
+			{% csrf_token %}
+			<a href="{% url "home" %}" class="btn btn-warning">Go Back </a>
 
-	<div class="container bg-light text-dark font-weight-bold">
-		<div class="row m-2">
-			<form method="POST" action="">
-				{% csrf_token %}
-				<a href="{{ request.META.HTTP_REFERER }}" class="btn btn-danger m-1 ">Go Back</a>
-				<input type="submit" value="Confirm" class="btn btn-success m-4 ">
-			</form>
-		</div>
-
+			<button type="submit" class="btn btn-success m-4 ">Delete</button>
+		</form>
 	</div>
+
 
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
 	        integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
 	        crossorigin="anonymous"></script>
 {% endblock %}
+
 </body>
 </html>

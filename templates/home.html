@@ -8,59 +8,43 @@
 
 </head>
 <body>
-
-
-{% extends 'main.html' %}
+{% extends "main.html" %}
 {% block content %}
-
-
 
 	<div class="container">
 		<div class="row">
 			<div class="col text-center mb-2">
 				<h1 class="display-3 mb-2 ">Home Template</h1>
 			</div>
-
 		</div>
-
 		<div class="row ">
 			<div class="col-md-3 ">
 				<h3 class="display-5 text-center">Hot Topics</h3>
 				<div class="list-group m-3 ">
-					<a href="{% url "home" %}" class="list-group-item list-group-item-action bg-dark-subtle">All</a>
+					<a href="" class="list-group-item list-group-item-action bg-dark-subtle">All</a>
 				</div>
-
 				{% for topic in topics %}
 					<div class="list-group m-3 bg-warning ">
 						<a href="{% url "home" %}?q={{ topic.name }}"
 						   class="list-group-item list-group-item-action bg-dark-subtle">{{ topic.name }}</a>
 					</div>
-
 				{% endfor %}
-
-
 			</div>
 			<div class="col-md-9 ">
-
 				<div class="col">
 					<a href="{% url "create-room" %}" class="btn btn-warning m-3 ">Create Room</a>
-					<h3 class="text-white"> {{ room_count }} rooms available </h3>
+					<h3 class="text-white"></h3>
 					<div class="row ">
-
-						{% for room in rooms %}
-							<div class="col-12 col-lg-6">
-
-								<div class="card text-white bg-dark mb-3 " style="height: 350px;">
-
+						<div>
+							{% for room in rooms %}
+								<div class="card text-white bg-dark mb-3 " style="height: 350px; ">
 									<div class="card-body">
 
-
-										<a href="{% url "room" room.id %}" class="text-dark ">
 											<div class="card-header">
 												<ul class="nav nav-pills card-header-pills">
 													<li class="nav-item">
 														<h5 class="card-subtitle text-white m-2" style="width: 400px;">
-															@{{ room.host.username }}</h5>
+															@{{ room.host }}</h5>
 													</li>
 													{% if request.user == room.host %}
 														<li class="nav-item">
@@ -74,23 +58,18 @@
 													{% endif %}
 												</ul>
 											</div>
-											<h2 class="card-title">{{ room.name }}</h2>
-										</a>
+											<a class="card-title display-6" href="{% url "room" room.id %}">{{ room.name }}</a>
+
 										<p class="card-text  ">{{ room.description }}</p>
-
-
 									</div>
 								</div>
-							</div>
-						{% endfor %}
+							{% endfor %}
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-
-
 	</div>
-
 
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
 	        integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
