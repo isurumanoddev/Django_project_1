@@ -72,8 +72,12 @@ def room(request, pk):
     room_messages = room.message_set.all()
     print(room_messages)
     if request.method == "POST":
+
         comment = request.POST.get("comment")
         print(comment)
+        messages =Message.objects.create(
+
+        )
 
 
     context = {"room": room, "room_messages": room_messages}
