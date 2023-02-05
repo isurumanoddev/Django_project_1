@@ -23,8 +23,25 @@
 								<p class="card-text text-black">{{ room.description }}</p>
 								{% for message in room_messages %}
 									<div class="card">
-										<div class="card-header text-black">
-											@{{ message.user }} {{ message.created|timesince }}
+										{% if request.user == message.user %}
+
+
+										{% endif %}
+										<div class="card-header text-black d-flex justify-content-evenly">
+											<ul class="nav nav-pills card-header-pills">
+												<li class="nav-item">@{{ message.user }}</li>
+												<li class="nav-item"> {{ message.created|timesince }}</li>
+
+												<li class="nav-item "  >
+													<small>
+														<a href="{% url "delete-room" room.id %}"
+													   class="btn btn-danger btn-sm mx-3 position-relative ">Delete</a>
+													</small>
+
+												</li>
+											</ul>
+
+
 										</div>
 										<div class="card-body">
 											<blockquote class="blockquote ">
@@ -41,7 +58,6 @@
 
 												<input type="text" name="comment" placeholder="add your comment here"
 												       class="form-control bg-primary-subtle">
-
 											</form>
 										</div>
 									</div>
@@ -55,8 +71,8 @@
 			<div class="col-md-3">
 				<h1 class="text-black">Participants</h1>
 				{% for participant in participants %}
-					<div class="list-group">
-						<li class="list-group-item">{{ participant }}</li>
+					<div class="list-group m-3 bg-warning">
+						<li class="list-group-item list-group-item-action ">@{{ participant.username }}</li>
 
 					</div>
 				{% endfor %}
