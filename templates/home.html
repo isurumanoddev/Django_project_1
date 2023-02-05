@@ -12,11 +12,7 @@
 {% block content %}
 
 	<div class="container">
-		<div class="row">
-			<div class="col text-center mb-2">
-				<h1 class="display-3 mb-2 ">Home Template</h1>
-			</div>
-		</div>
+
 		<div class="row ">
 			<div class="col-md-3 ">
 				<h3 class="display-5 text-center">Hot Topics</h3>
@@ -30,7 +26,8 @@
 					</div>
 				{% endfor %}
 			</div>
-			<div class="col-md-9 ">
+
+			<div class="col-md-6 ">
 				<div class="col">
 					<a href="{% url "create-room" %}" class="btn btn-warning m-3 ">Create Room</a>
 					<h3 class="text-white"></h3>
@@ -40,25 +37,26 @@
 								<div class="card text-white bg-dark mb-3 " style="height: 350px; ">
 									<div class="card-body">
 
-											<div class="card-header">
-												<ul class="nav nav-pills card-header-pills">
+										<div class="card-header">
+											<ul class="nav nav-pills card-header-pills">
+												<li class="nav-item">
+													<h5 class="card-subtitle text-white m-2" style="width: 400px;">
+														@{{ room.host }}</h5>
+												</li>
+												{% if request.user == room.host %}
 													<li class="nav-item">
-														<h5 class="card-subtitle text-white m-2" style="width: 400px;">
-															@{{ room.host }}</h5>
+														<a href="{% url "update-room" room.id %}"
+														   class="btn btn-success m-1">Update</a>
 													</li>
-													{% if request.user == room.host %}
-														<li class="nav-item">
-															<a href="{% url "update-room" room.id %}"
-															   class="btn btn-success m-1">Update</a>
-														</li>
-														<li class="nav-item">
-															<a href="{% url "delete-room" room.id %}"
-															   class="btn btn-danger m-1 ">Delete</a>
-														</li>
-													{% endif %}
-												</ul>
-											</div>
-											<a class="card-title display-6" href="{% url "room" room.id %}">{{ room.name }}</a>
+													<li class="nav-item">
+														<a href="{% url "delete-room" room.id %}"
+														   class="btn btn-danger m-1 ">Delete</a>
+													</li>
+												{% endif %}
+											</ul>
+										</div>
+										<a class="card-title display-6"
+										   href="{% url "room" room.id %}">{{ room.name }}</a>
 
 										<p class="card-text  ">{{ room.description }}</p>
 									</div>
@@ -67,6 +65,21 @@
 						</div>
 					</div>
 				</div>
+			</div>
+
+			<div class="col-md-3 ">
+				<h3 class="display-5 text-center">Recent Activity</h3>
+
+				{% for message in messages %}
+					<div class="card m-3">
+						<h6 class="card-header bg-primary-subtle"> @{{ message.user }} {{ message.created|timesince }}</h6>
+						<div class="card-body">
+							<h5 class="card-title">{{ message.room }}</h5>
+							<p class="card-text">{{ message.body }}
+								content.</p>
+						</div>
+					</div>
+				{% endfor %}
 			</div>
 		</div>
 	</div>
