@@ -34,7 +34,7 @@
 					<div class="row ">
 						<div>
 							{% for room in rooms %}
-								<div class="card text-white bg-dark mb-3 " style="height: 350px; ">
+								<div class="card text-white bg-dark mb-3 " style="height: 225px; ">
 									<div class="card-body">
 
 										<div class="card-header">
@@ -72,10 +72,10 @@
 
 				{% for message in messages %}
 					<div class="card m-3">
-						<h6 class="card-header bg-primary-subtle"> @{{ message.user }} {{ message.created|timesince }}</h6>
-						<div class="card-body">
-							<h5 class="card-title">{{ message.room }}</h5>
-							<p class="card-text">{{ message.body }}
+						<h6 class="card-header bg-primary-subtle "> @{{ message.user }} {{ message.created|timesince }}</h6>
+						<div class="card-body bg-dark rounded-2 text-white">
+							<h5 class="card-title text-warning"><small> replied to "{{ message.room }}"</small> </h5>
+							<p class="card-text ">{{ message.body }}
 								content.</p>
 						</div>
 					</div>
