@@ -1,3 +1,4 @@
+from django.db.models import Q
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
@@ -63,7 +64,7 @@ def home(request):
     room_count = rooms.count()
 
     topics = Topic.objects.all()
-    messages = Message.objects.all()
+    messages = Message.objects.filter(room__topic__name__icontains=q)
     context = {'rooms': rooms, "topics": topics, "room_count": room_count,"messages":messages}
     return render(request, "home.html", context)
 
