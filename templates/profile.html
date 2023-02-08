@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+	      integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+
+</head>
+<body>
+
+{% include "navbar.html" %}
+{% block content %}
+	<div class="container">
+		<div class="row my-3">
+			<div class="col-md-3">
+				<div class="card mb-3" style="width: 18rem;">
+					 <img src="https://img.freepik.com/free-photo/young-beautiful-woman-pink-warm-sweater-natural-look-smiling-portrait-isolated-long-hair_285396-896.jpg" class="card-img-top" alt="...">
+
+					<div class="card-body">
+						<h5 class="card-title">{{ user.username }}</h5>
+						<p class="card-text">@ welcome to my profile</p>
+					</div>
+				</div>
+				{% include "topic_component.html" %}
+
+			</div>
+			<div class="col-md-6">
+					{% include "feed_component.html" %}
+			</div>
+			<div class="col-md-3">
+					{% include "activity_component.html" %}
+			</div>
+		</div>
+
+	</div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+        crossorigin="anonymous"></script>
+
+{% endblock %}
+</body>
+</html>
