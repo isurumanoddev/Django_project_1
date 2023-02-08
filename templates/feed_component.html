@@ -12,34 +12,39 @@
 	<div class="row ">
 		<div>
 			{% for room in rooms %}
-				<div class="card text-white bg-dark mb-3 " style="height: 225px; ">
-					<div class="card-body bg-dark rounded-2">
 
-						<div class="card-header">
-							<ul class="nav nav-pills card-header-pills">
-								<li class="nav-item">
-									<h5 class="card-subtitle text-white m-2" style="width: 400px;">
-										<a href="{% url "profile" room.host.id %}">@{{ room.host }}</a></h5>
-								</li>
+						<div class="bg-white border mt-2">
+
+							<div class="d-flex flex-row justify-content-between align-items-center p-2 border-bottom">
+								<div class="d-flex flex-row align-items-center feed-text px-2"><img
+										class="rounded-circle"
+										src="https://img.freepik.com/free-photo/young-beautiful-woman-pink-warm-sweater-natural-look-smiling-portrait-isolated-long-hair_285396-896.jpg"
+										width="45">
+									<div class="d-flex ml-2"><span
+											class="font-weight-bold mx-2"> @<a href="{% url "profile" room.host.id %}"
+									                                           class="text-warning">  {{ room.host }}</a></span>
+										<span class="text-black-50 mx-2">{{ room.created|timesince }} ago</span>
+
+
+									</div>
+
+								</div>
+
+							</div>
+
+
+							<div class="p-2 px-3"><span>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</span>
+							</div>
+							<div class="d-flex justify-content-end  ">
 								{% if request.user == room.host %}
-									<li class="nav-item">
-										<a href="{% url "update-room" room.id %}"
-										   class="btn btn-success m-1">Update</a>
-									</li>
-									<li class="nav-item">
-										<a href="{% url "delete-room" room.id %}"
-										   class="btn btn-danger m-1 ">Delete</a>
-									</li>
+									<a href="{% url "update-room" room.id %}"
+									   class="btn btn-outline-success btn-sm ">Update</a>
+									<a href="{% url "delete-room" room.id %}" class="btn btn-outline-danger btn-sm">Delete</a>
 								{% endif %}
-							</ul>
-						</div>
-						<a class="card-title display-6"
-						   href="{% url "room" room.id %}">{{ room.name }}</a>
 
-						<p class="card-text  ">{{ room.description }}</p>
-					</div>
-				</div>
-			{% endfor %}
+							</div>
+						</div>
+					{% endfor %}
 		</div>
 	</div>
 
