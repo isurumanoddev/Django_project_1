@@ -9,9 +9,6 @@
 </head>
 <body>
 
-
-
-
 	<div class="row ">
 		<div>
 			{% for room in rooms %}
@@ -22,7 +19,7 @@
 							<ul class="nav nav-pills card-header-pills">
 								<li class="nav-item">
 									<h5 class="card-subtitle text-white m-2" style="width: 400px;">
-										@{{ room.host }}</h5>
+										<a href="{% url "profile" room.host.id %}">@{{ room.host }}</a></h5>
 								</li>
 								{% if request.user == room.host %}
 									<li class="nav-item">
