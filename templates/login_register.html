@@ -11,44 +11,57 @@
 {% extends "main.html" %}
 
 {% block content %}
-	{% load crispy_forms_tags %}
-	{% if page == "login_page" %}
+{#	{% load crispy_forms_tags %}#}
+{#	{% if page == "login_page" %}#}
 
 
-		<div class="container ">
-			<div class="row my-3">
-				<form method="POST" action="" class="bg-primary-subtle rounded-3">
-					{% csrf_token %}
-					<div class="form-group">
-						<label class="form-label ">Username</label>
-					<input type="text" name="username" class="form-control">
-					</div>
-					<div class="form-group">
 
-					<label class="form-label">Password</label>
-					<input type="password" name="password" class="form-control">
-					</div>
+{##}
+{#		<div class="container ">#}
+{#			<div class="row my-3">#}
+{#				<form method="POST" action="" class="bg-primary-subtle rounded-3">#}
+{#					{% csrf_token %}#}
+{#					<div class="form-group">#}
+{#						<label class="form-label ">Username</label>#}
+{#					<input type="text" name="username" class="form-control">#}
+{#					</div>#}
+{#					<div class="form-group">#}
+{##}
+{#					<label class="form-label">Password</label>#}
+{#					<input type="password" name="password" class="form-control">#}
+{#					</div>#}
+{##}
+{#					<button type="submit" class="btn btn-success m-4 ">Login</button>#}
+{#					<a href="{% url "register" %}">Not registred yet .Register here</a>#}
+{#				</form>#}
+{#			</div>#}
+{##}
+{#		</div>#}
+{#	{% else %}#}
+{#		<div class="container" >#}
+{#			<div class="row my-4">#}
+{#				<form class="bg-primary-subtle rounded-3 " method="POST" action="">#}
+{#					{% csrf_token %}#}
+{#					{{ form|crispy }}#}
+{#					<button type="submit" class="btn btn-success m-4 ">Register</button>#}
+{#					<a href="{% url "login" %}">Already registred .Login here</a>#}
+{#				</form>#}
+{#			</div>#}
+{##}
+{#		</div>#}
+{#		#}
 
-					<button type="submit" class="btn btn-success m-4 ">Login</button>
-					<a href="{% url "register" %}">Not registred yet .Register here</a>
-				</form>
-			</div>
 
-		</div>
-	{% else %}
-		<div class="container" >
-			<div class="row my-4">
-				<form class="bg-primary-subtle rounded-3 " method="POST" action="">
-					{% csrf_token %}
-					{{ form|crispy }}
-					<button type="submit" class="btn btn-success m-4 ">Register</button>
-					<a href="{% url "login" %}">Already registred .Login here</a>
-				</form>
-			</div>
 
-		</div>
+{#	{% endif %}#}
 
-	{% endif %}
+
+
+
+
+
+
+
 
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
 	        integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
