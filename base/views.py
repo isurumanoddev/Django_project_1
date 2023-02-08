@@ -33,7 +33,7 @@ def login_page(request):
             print("User not registered")
 
     context = {"page": page}
-    return render(request, "a.html", context)
+    return render(request, "login_register.html", context)
 
 
 def logout_user(request):
@@ -51,7 +51,7 @@ def user_register(request):
             return redirect("login")
 
     context = {"form": form}
-    return render(request, "a.html", context)
+    return render(request, "login_register.html", context)
 
 
 def home(request):

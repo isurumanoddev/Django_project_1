@@ -24,6 +24,7 @@
 									<h2 class="fw-bold mb-2 ">LOGIN</h2>
 									<p class="text-white-50 mb-5">Please enter your login and password!</p>
 									<form method="POST">
+										{% csrf_token %}
 										<div class="form-outline mb-4">
 											<label class="form-label">Username</label>
 											<input type="text" name="username" class="form-control form-control-lg"/>
