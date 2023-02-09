@@ -11,16 +11,26 @@
 
 
 
-	<h3 class="display-5 text-center">Hot Topics</h3>
-	<div class="list-group m-3 ">
-		<a href="" class="list-group-item list-group-item-action bg-dark-subtle">All</a>
+
+	<div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark" style="width: 280px;">
+		<a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+
+			<span class="fs-4">Hot Topics</span>
+		</a>
+		<hr>
+		<ul class="nav nav-pills flex-column mb-auto">
+			{% for topic in topics %}
+			<li class="nav-item">
+				<a href="{% url "home" %}?q={{ topic.name }}" class="nav-link text-white table-hover py-3" aria-current="page">
+
+					{{ topic.name }}
+				</a>
+			</li>
+			{% endfor %}
+		</ul>
+		<hr>
+
 	</div>
-	{% for topic in topics %}
-		<div class="list-group m-3 bg-warning ">
-			<a href="{% url "home" %}?q={{ topic.name }}"
-			   class="list-group-item list-group-item-action bg-dark-subtle">{{ topic.name }}</a>
-		</div>
-	{% endfor %}
 
 
 

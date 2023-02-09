@@ -9,18 +9,62 @@
 </head>
 <body>
 
+	<section style="background-color: #ad655f;">
+		<div class="container">
+			<div class="row ">
+				<div class="col">
+					<div class="card text-dark">
+						<div class="card-body p-4">
+							<h4 class="mb-0">Recent comments</h4>
+							<p class="fw-light mb-4 pb-2">Latest Comments section by users</p>
 
-				<h3 class="display-5 text-center">Recent Activity</h3>
-				{% for message in messages %}
-					<div class="card m-3">
-						<h6 class="card-header bg-dark-subtle text-primary "><a href="{% url "profile" message.user.id %}"> @{{ message.user }}</a> {{ message.created|timesince }}</h6>
-						<div class="card-body bg-dark rounded-2 text-white">
-							<h5 class="card-title text-warning"><small> replied to "{{ message.room }}"</small> </h5>
-							<p class="card-text ">{{ message.body }}
-								content.</p>
+
 						</div>
+						{% for message in messages %}
+							<hr class="my-0"/>
+
+
+							<div class="card-body p-4">
+								<div class="d-flex flex-start">
+									<img class="rounded-circle shadow-1-strong me-3"
+									     src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(26).webp" alt="avatar"
+									     width="60"
+									     height="60"/>
+									<div>
+										<h6 class="fw-bold mb-1">@{{ message.user }}</h6>
+										<div class="d-flex align-items-center mb-3">
+											<p class="mb-0">
+												 {{ message.created|timesince }} ago
+
+
+											</p>
+
+											<a href="#!" class="link-muted"><i class="fas fa-pencil-alt ms-2"></i></a>
+											<a href="#!" class="text-success"><i class="fas fa-redo-alt ms-2"></i></a>
+											<a href="#!" class="link-danger"><i class="fas fa-heart ms-2"></i></a>
+										</div>
+										<p class="card-title">
+												<span class="fw-bold">commented on</span>  " {{ message.room }} "
+
+
+											</p>
+										<p class="mb-0 bg-dark-subtle rounded-3 p-2">
+											{{ message.body }}
+											The generated Lorem Ipsum is therefore always free from
+											repetition, injected humour, or non-characteristic words etc.
+										</p>
+									</div>
+								</div>
+							</div>
+
+						{% endfor %}
+
+
 					</div>
-				{% endfor %}
+				</div>
+			</div>
+		</div>
+	</section>
 
 
 
