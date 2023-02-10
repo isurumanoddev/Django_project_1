@@ -46,8 +46,9 @@ def user_register(request):
     if request.method == "POST":
         form = UserCreationForm(request.POST)
         if form.is_valid():
-            form.save()
-            print("user registered")
+            user = form.save(commit=False)
+            user.save()
+            login(request,user)
             return redirect("login")
 
     context = {"form": form}
