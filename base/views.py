@@ -48,7 +48,7 @@ def user_register(request):
         if form.is_valid():
             user = form.save(commit=False)
             user.save()
-            login(request,user)
+            login(request, user)
             return redirect("login")
 
     context = {"form": form}
@@ -105,7 +105,9 @@ def create_room(request):
     if request.method == "POST":
         form = RoomForm(request.POST)
         if form.is_valid():
-            form.save()
+            room = form.save(commit=False)
+            room.host = request.user
+            room.save()
             return redirect("home")
     context = {"form": form}
     return render(request, "room_form.html", context)
