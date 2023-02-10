@@ -72,7 +72,13 @@
 									<p class="text-white-50 mb-5">Please enter your login and password!</p>
 									<form method="POST">
 										{% csrf_token %}
-										{{ form|crispy }}
+										{% for field in form %}
+										<div class="form-outline mb-4">
+											<label class="form-label">{{ field.label }}</label><br>
+											{{ field }}
+
+										</div>
+										{% endfor %}
 										<button class="btn btn-outline-light btn-lg px-5" type="submit">Login</button>
 									</form>
 								</div>
