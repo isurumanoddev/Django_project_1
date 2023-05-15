@@ -96,7 +96,7 @@ def user_profile(request, pk):
     rooms = user.room_set.all()
 
     context = {"user": user, "messages": messages, "rooms": rooms}
-    return render(request, "profile.html", context)
+    return render(request, "edit-user.html", context)
 
 
 @login_required(login_url="login")
