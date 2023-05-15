@@ -381,9 +381,7 @@ a {
   cursor: pointer;
 }
 
-.dropdown-button:hover svg {
-  fill: var(--color-main);
-}
+
 
 /*==============================
 =>  Layout
