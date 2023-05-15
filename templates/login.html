@@ -1,0 +1,43 @@
+{% extends "main.html" %}
+
+{% block content %}
+
+    <main class="auth layout">
+        <div class="container">
+            <div class="layout__box">
+                <div class="layout__boxHeader">
+                    <div class="layout__boxTitle">
+                        <h3>Login</h3>
+                    </div>
+                </div>
+                <div class="layout__body">
+                    <h2 class="auth__tagline">Find your study partner</h2>
+
+                    <form  method="POST" class="form" action="#">
+                        {% csrf_token %}
+                        <div class="form__group form__group">
+                            <label for="room_name">Username</label>
+                            <input id="username" name="username" type="text" placeholder="e.g. dennis_ivy"/>
+                        </div>
+                        <div class="form__group">
+                            <label for="password">Password</label>
+                            <input
+                                    id="password"
+                                    name="password"
+                                    type="password"
+                                    placeholder="&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;"
+                            />
+                        </div>
+
+                        <button class="btn btn--main" type="submit">Login</button>
+                    </form>
+
+                    <div class="auth__action">
+                        <p>Haven't signed up yet?</p>
+                        <a href="{% url "register" %}" class="btn btn--link">Sign Up</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+{% endblock content %}

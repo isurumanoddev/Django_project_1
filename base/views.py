@@ -10,7 +10,7 @@ from django.contrib.auth.forms import UserCreationForm
 
 
 def login_page(request):
-    page = "login_page"
+
     if request.user.is_authenticated:
         return redirect("home")
 
@@ -32,8 +32,8 @@ def login_page(request):
         else:
             print("User not registered")
 
-    context = {"page": page}
-    return render(request, "login_register.html", context)
+    context = {}
+    return render(request, "login.html", context)
 
 
 def logout_user(request):
@@ -52,7 +52,7 @@ def user_register(request):
             return redirect("login")
 
     context = {"form": form}
-    return render(request, "login_register.html", context)
+    return render(request, "signup.html", context)
 
 
 def home(request):
@@ -67,14 +67,14 @@ def home(request):
     topics = Topic.objects.all()
     messages = Message.objects.filter(room__topic__name__icontains=q)
     context = {'rooms': rooms, "topics": topics, "room_count": room_count, "messages": messages}
-    return render(request, "home.html", context)
+    return render(request, "index.html", context)
 
 
 def room(request, pk):
     room = Room.objects.get(id=pk)
     room_messages = room.message_set.all()
     participants = room.participants.all()
-    print(room_messages)
+
     if request.method == "POST":
         messages = Message.objects.create(
             user=request.user,
@@ -110,7 +110,7 @@ def create_room(request):
             room.save()
             return redirect("home")
     context = {"form": form}
-    return render(request, "room_form.html", context)
+    return render(request, "create-room.html", context)
 
 
 @login_required(login_url="login")
@@ -127,7 +127,7 @@ def update_room(request, pk):
             return redirect("home")
 
     context = {"form": form}
-    return render(request, "room_form.html", context)
+    return render(request, "create-room.html", context)
 
 
 @login_required(login_url="login")

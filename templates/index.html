@@ -1,0 +1,126 @@
+{% extends "main.html" %}
+
+{% block content %}
+
+    <main class="layout layout--3">
+        <div class="container">
+            <!-- Topics Start -->
+            <div class="topics">
+                <div class="topics__header">
+                    <h2>Browse Topics</h2>
+                </div>
+                <ul class="topics__list">
+                    <li>
+                        <a href="/" class="active">All <span>{{ topics.count }}</span></a>
+                    </li>
+                    {% for topic in topics %}
+                        <li>
+                            <a href="/">{{ topic.name }} <span>{{ topic.count }}</span></a>
+                        </li>
+                    {% endfor %}
+
+                </ul>
+
+            </div>
+            <!-- Topics End -->
+
+            <!-- Room List Start -->
+            <div class="roomList">
+                <div class="mobile-menu">
+                    <form class="header__search">
+                        <label>
+                            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="32" height="32"
+                                 viewBox="0 0 32 32">
+                                <title>search</title>
+
+                            </svg>
+                            <input placeholder="Search for posts"/>
+                        </label>
+                    </form>
+                    <div class="mobile-menuItems">
+                        <a class="btn btn--main btn--pill" href="#">Browse Topics</a>
+                        <a class="btn btn--main btn--pill" href="#">Recent Activities</a>
+                    </div>
+                </div>
+                <div class="roomList__header">
+                    <div>
+                        <h2>Study Room</h2>
+                        <p>{{ room_count }} Rooms available</p>
+                    </div>
+                    <a class="btn btn--main" href="create-room.html">Create Room</a>
+                </div>
+                {% for room in rooms %}
+                    <div class="roomListRoom">
+                        <div class="roomListRoom__header">
+
+                            <a href="profile.html" class="roomListRoom__author">
+                                <div class="avatar avatar--small">
+                                    <img src="https://randomuser.me/api/portraits/women/11.jpg"/>
+                                </div>
+                                <span>@{{ room.host }}</span>
+                            </a>
+                            <div class="roomListRoom__actions">
+                                <span>{{ room.created|timesince }}</span>
+                            </div>
+                        </div>
+                        <div class="roomListRoom__content">
+                            <a href="{% url "room" room.id %}">{{ room.name }}</a>
+                            <p>{{ room.description }}</p>
+                        </div>
+                        <div class="roomListRoom__meta">
+                            <a href="room.html" class="roomListRoom__joined">
+                                {{ room.participants.count }} joined
+                            </a>
+                            <p class="roomListRoom__topic">Python</p>
+                        </div>
+                    </div>
+                {% endfor %}
+
+            </div>
+            <!-- Room List End -->
+
+            <!-- Activities Start -->
+            <div class="activities">
+                <div class="activities__header">
+                    <h2>Recent Activities</h2>
+                </div>
+                {% for message in messages %}
+                    <div class="activities__box">
+                        <div class="activities__boxHeader roomListRoom__header">
+                            <a href="profile.html" class="roomListRoom__author">
+                                <div class="avatar avatar--small">
+                                    <img src="https://randomuser.me/api/portraits/women/11.jpg"/>
+                                </div>
+                                <p>
+                                    @{{ message.user }}
+                                    <span>{{ message.created|timesince}} ago</span>
+                                </p>
+                            </a>
+                            <div class="roomListRoom__actions">
+                                <a href="#">
+                                    <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="32" height="32"
+                                         viewBox="0 0 32 32">
+                                        <title>remove</title>
+
+                                    </svg>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="activities__boxContent">
+                            <p>replied to post “<a href="room.html">{{ message.room }}</a>”</p>
+                            <div class="activities__boxRoomContent">
+                                {{ message.body }}
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+
+            </div>
+            <!-- Activities End -->
+        </div>
+    </main>
+
+
+
+
+{% endblock content %}

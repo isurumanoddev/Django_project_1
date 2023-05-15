@@ -1,0 +1,58 @@
+{% extends "main.html" %}
+
+{% block content %}
+    <main class="auth layout">
+        <div class="container">
+            <div class="layout__box">
+                <div class="layout__boxHeader">
+                    <div class="layout__boxTitle">
+                        <h3>Sign up</h3>
+                    </div>
+                </div>
+                <div class="layout__body">
+                    <h2 class="auth__tagline">Find your study partner</h2>
+
+                    <form method="POST" class="form" action="#">
+                        {% csrf_token %}
+                        <div class="form__group form__group">
+                            <label for="fullname">Full Name</label>
+                            <input id="fullname" name="fullname" type="text" placeholder="e.g. Dennis Ivy"/>
+                        </div>
+                        <div class="form__group form__group">
+                            <label for="room_name">Username</label>
+                            <input id="username" name="username" type="text" placeholder="e.g. dennis_ivy"/>
+                        </div>
+                        <div class="form__group">
+                            <label for="password">Password</label>
+                            <input
+                                    id="password"
+                                    name="password1"
+                                    type="password"
+                                    placeholder="&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;"
+                            />
+                        </div>
+
+                        <div class="form__group">
+                            <label for="confirm_password">Confirm Password</label>
+                            <input
+                                    id="confirm_password"
+                                    name="password2"
+                                    type="password"
+                                    placeholder="&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;"
+                            />
+                        </div>
+
+                        <button class="btn btn--main" type="submit">Sign Up</button>
+                    </form>
+
+                    <div class="auth__action">
+                        <p>Already have an account?</p>
+                        <a href="{% url "login" %}" class="btn btn--link">Log In</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+
+{% endblock content %}

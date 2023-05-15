@@ -1,75 +1,99 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<title>Title</title>
-	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
-	      integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
-</head>
-<body>
 {% extends "main.html" %}
-{% block content %}
-	<div class="container">
-		<div class="row">
-			<div class="col-md-9">
-				<h1 class="text-light">Coversation</h1>
-				<div class="row">
-					<div class="col">
-						<div class="card text-white bg-success-subtle mb-3">
-							<div class="card-body">
-								<h2 class="card-title text-black">{{ room.name }}</h2>
-								<p class="card-text text-black">{{ room.description }}</p>
-								{% for message in room_messages %}
-									<div class="card">
-										<div class="card-header text-black d-flex justify-content-lg-end">
-											<ul class="nav nav-pills card-header-pills">
-												<li class="nav-item">@{{ message.user }}</li>
-												<li class="nav-item"> {{ message.created|timesince }}</li>
-												<li class="nav-item ">
-													{% if request.user == message.user %}
-														<a href="{% url "delete-message" message.id %}"
-														   class="btn btn-danger btn-sm mx-3 position-relative ">Delete</a>
-													{% endif %}
-												</li>
-											</ul>
-										</div>
-										<div class="card-body">
-											<blockquote class="blockquote ">
-												<p class="text-black">{{ message.body }}</p>
-											</blockquote>
-										</div>
-									</div>
-								{% endfor %}
-								{% if request.user.is_authenticated %}
-									<div class="card">
-										<div class="card-body">
-											<form method="POST" action="">
-												{% csrf_token %}
-												<input type="text" name="comment" placeholder="add your comment here"
-												       class="form-control bg-primary-subtle">
-											</form>
-										</div>
-									</div>
-								{% endif %}
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="col-md-3">
-				<h1 class="text-black">Participants</h1>
-				{% for participant in participants %}
-					<div class="list-group m-3 bg-warning">
-						<li class="list-group-item list-group-item-action ">@{{ participant.username }}</li>
-					</div>
-				{% endfor %}
-			</div>
-		</div>
-	</div>
 
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
-	        integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
-	        crossorigin="anonymous"></script>
-{% endblock %}
-</body>
-</html>
+{% block content %}
+    <main class="profile-page layout layout--2">
+        <div class="container">
+            <!-- Room Start -->
+            <div class="room">
+                <div class="room__top">
+                    <div class="room__topLeft">
+                        <a href="index.html">
+                            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="32" height="32"
+                                 viewBox="0 0 32 32">
+                                <title>arrow-left</title>
+                                <path
+                                        d="M13.723 2.286l-13.723 13.714 13.719 13.714 1.616-1.611-10.96-10.96h27.625v-2.286h-27.625l10.965-10.965-1.616-1.607z"
+                                ></path>
+                            </svg>
+                        </a>
+                        <h3>Study Room</h3>
+                    </div>
+
+                    <div class="room__topRight">
+                        <a href="#"><i class="uil uil-edit-alt"></i> </a>
+                        <a href="#"><i class="uil uil-multiply"></i></a>
+                    </div>
+
+                </div>
+                <div class="room__box scroll">
+                    <div class="room__header scroll">
+                        <div class="room__info">
+                            <h3>{{ room.name }}</h3>
+                            <span>3 days ago</span>
+                        </div>
+                        <div class="room__hosted">
+                            <p>{{ room.host }}</p>
+                            <a href="#" class="room__author">
+                                <div class="avatar avatar--small">
+                                    <img src="https://randomuser.me/api/portraits/men/37.jpg"/>
+                                </div>
+                                <span>@{{ room.host }}</span>
+                            </a>
+                        </div>
+                        <div class="room__details">{{ room.description }}</div>
+                        <span class="room__topics">{{ room.topic }}</span>
+                    </div>
+                    <div class="room__conversation">
+                        <div class="threads scroll">
+                            {% for comment in room_messages %}
+                                <div class="thread">
+                                    <div class="thread__top">
+                                        <div class="thread__author">
+                                            <a href="#" class="thread__authorInfo">
+                                                <div class="avatar avatar--small">
+                                                    <img src="https://randomuser.me/api/portraits/men/37.jpg"/>
+                                                </div>
+                                                <span>@{{ comment.user }}</span>
+                                            </a>
+                                            <span class="thread__date">{{ comment.created|timesince }} ago</span>
+                                        </div>
+                                        <div class="thread__delete">
+                                            <a href="#"><i class="uil uil-multiply"></i></a>
+                                        </div>
+                                    </div>
+                                    <div class="thread__details">{{ comment.body }}</div>
+                                </div>
+                            {% endfor %}
+
+                        </div>
+                    </div>
+                </div>
+                <div class="room__message">
+                    <form action="#"><input name="" placeholder="Write your message here..."/></form>
+                </div>
+            </div>
+            <!-- Room End -->
+
+            <!--   Start -->
+            <div class="participants">
+                <h3 class="participants__top">Participants <span>{{ participants.count }} joined</span></h3>
+                <div class="participants__list scroll">
+
+                    {% for participant in participants %}
+                        <a href="profile.html" class="participant">
+                            <div class="avatar avatar--medium">
+                                <img src="https://randomuser.me/api/portraits/men/37.jpg"/>
+                            </div>
+                            <p>
+                                {{ participant.username }}
+                                <span>@{{ participant.username }}</span>
+                            </p>
+                        </a>
+                    {% endfor %}
+                </div>
+            </div>
+            <!--  End -->
+        </div>
+    </main>
+
+{% endblock content %}
