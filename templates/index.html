@@ -47,13 +47,13 @@
                         <h2>Study Room</h2>
                         <p>{{ room_count }} Rooms available</p>
                     </div>
-                    <a class="btn btn--main" href="create-room.html">Create Room</a>
+                    <a class="btn btn--main" href="{% url "create-room" %}">Create Room</a>
                 </div>
                 {% for room in rooms %}
                     <div class="roomListRoom">
                         <div class="roomListRoom__header">
 
-                            <a href="profile.html" class="roomListRoom__author">
+                            <a href="{% url "profile" room.host.id %}" class="roomListRoom__author">
                                 <div class="avatar avatar--small">
                                     <img src="https://randomuser.me/api/portraits/women/11.jpg"/>
                                 </div>
@@ -71,7 +71,7 @@
                             <a href="room.html" class="roomListRoom__joined">
                                 {{ room.participants.count }} joined
                             </a>
-                            <p class="roomListRoom__topic">Python</p>
+                            <p class="roomListRoom__topic">{{ room.topic }}</p>
                         </div>
                     </div>
                 {% endfor %}
