@@ -14,5 +14,14 @@ Posts and Feeds: Users can create posts, share updates, and view posts from thei
 Groups and Discussions: StuddyBud allows users to create or join study groups based on interests or subjects. Within these groups, they can initiate discussions, ask questions, and help each other out academically.
 
 
+## Tech Stack:
+
+Python
+Django Web Framework
+HTML/CSS
+JavaScript
+Bootstrap (Front-end Framework)
+SQLite (for development, other databases can be integrated for production)
+How to Contribute:
 
 
